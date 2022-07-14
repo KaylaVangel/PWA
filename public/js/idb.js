@@ -14,7 +14,7 @@ request.onsuccess = function (event) {
 
     db = event.target.result;
 
-    // check if app is online, if yes run uploadPizza() function to send all local db data to api
+    // check if app is online, if yes run uploadTransaction() function to send all local db data to api
     if (navigator.onLine) {
         // we haven't created this yet, but we will soon, so let's comment it out for now
         uploadTransaction();
@@ -23,6 +23,8 @@ request.onsuccess = function (event) {
 
 request.onerror = function (event) {
     // log error here
+    console.log("TEST")
+    console.log(event)
     console.log(event.target.errorCode);
 };
 
@@ -66,7 +68,7 @@ function uploadTransaction() {
                     }
                     // open one more transaction
                     const transaction = db.transaction(['new_transaction'], 'readwrite');
-                    // access the new_pizza object store
+                    // access the new_transaction object store
                     const transactionObjectStore = transaction.objectStore('new_transaction');
                     // clear all items in your store
                     transactionObjectStore.clear();
@@ -74,6 +76,7 @@ function uploadTransaction() {
                     alert('All saved transactions have been submitted!');
                 })
                 .catch(err => {
+                    console.log("Other test")
                     console.log(err);
                 });
         }

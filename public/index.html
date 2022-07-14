@@ -48,10 +48,13 @@
 </body>
 <script>
   //make sure service worker is supported//
-  (function() {
+  (() => {
     if("serviceWorker" in navigator) {
       navigator.serviceWorker.register("./service-worker.js")
-        .then(() => console.log("Service Worker registered successfully."))
+        .then(reg => {
+          console.log('registered')
+          
+        })
         .catch(error => console.log("Service Worker registration failed:", error));
     }
   })();
